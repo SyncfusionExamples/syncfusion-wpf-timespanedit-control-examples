@@ -33,6 +33,7 @@
                                      NullString="{Binding NullString}"
                                      EnableExtendedScrolling="{Binding EnableExtendedScrolling}"
                                      ShowArrowButtons="{Binding ShowArrowButtons}"
+                                     StepInterval="{Binding StepInterval}"
                                      MinValue="{Binding MinimumValue}"
                                      MaxValue="{Binding MaximumValue}"
                                      IncrementOnScrolling="{Binding IncrementOnScrolling}"
@@ -51,6 +52,7 @@
                   VerticalAlignment="Stretch"
                   Margin="5">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -155,32 +157,41 @@
                           IsChecked="{Binding IsReadOnly,Mode=TwoWay}"
                           Grid.Column="1"/>
 
+                <TextBlock Grid.Column="0"
+                           Grid.Row="11"
+                           Margin="3"
+                           Text="StepInterval" />
+                <syncfusion:TimeSpanEdit Value="{Binding StepInterval,Mode=TwoWay}"
+                                         Format="{Binding Format}" 
+                                         Margin="3"
+                                         Grid.Column="1"                                         
+                                         Grid.Row="11"/>
+
 
                 <!--Null Value-->
                 <TextBlock Style="{StaticResource headerStyle}" 
-                           Grid.Row="11" 
+                           Grid.Row="12" 
                            Grid.Column="0" 
                            Text="NullValue Support" />
                 <TextBlock Grid.Column="0" 
-                           Grid.Row="12"
+                           Grid.Row="13"
                            Margin="3"
                            Text="Allow Null" />
-                <CheckBox Grid.Row="12" 
+                <CheckBox Grid.Row="13" 
                           IsChecked="{Binding AllowNull,Mode=TwoWay}"
                           Margin="3"
                           Grid.Column="1"/>
 
                 <TextBlock Grid.Column="0" 
                            FontWeight="Normal" 
-                           Grid.Row="13" 
+                           Grid.Row="14" 
                            Margin="3"
                            Text="Null String" />
-                <TextBox Grid.Row="14"
+                <TextBox Grid.Row="15"
                          Text="{Binding NullString,Mode=TwoWay}" 
                          Foreground="Red"
-                         Margin="3"/>
-                
-                <Button Grid.Row="14"
+                         Margin="3"/>                
+                <Button Grid.Row="15"
                         Margin="3"
                         Grid.Column="1"
                         Content ="Set Null Value">

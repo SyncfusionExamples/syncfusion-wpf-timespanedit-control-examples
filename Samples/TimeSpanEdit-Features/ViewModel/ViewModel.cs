@@ -7,9 +7,10 @@ namespace TimeSpanEdit_Features
 {
     class ViewModel : NotificationObject
     {
-        private TimeSpan minvalue = new TimeSpan(1, 0, 0, 0);
-        private TimeSpan maxvalue = new TimeSpan(31, 0, 0, 0);
-        private TimeSpan? _value = new TimeSpan(1, 0, 0, 0);
+        private TimeSpan stepInterval = new TimeSpan(2, 2, 4, 10);
+        private TimeSpan minvalue = new TimeSpan(1,01, 01, 01);
+        private TimeSpan maxvalue = new TimeSpan(31, 23, 59, 59);
+        private TimeSpan? _value = new TimeSpan(1, 12, 20, 40);
         private ObservableCollection<string> formatCollection;
         private ObservableCollection<string> eventLogsCollection;
         private ObservableCollection<string> coll = new ObservableCollection<string>();
@@ -20,7 +21,7 @@ namespace TimeSpanEdit_Features
         private bool allowNull = false;
         private bool isReadOnly = false;
         private bool enableExtendedScrolling;
-        private string format= "d";
+        private string format= "d.h:m:s";
 
         public ObservableCollection<string> EventLogsCollection
         {
@@ -191,6 +192,29 @@ namespace TimeSpanEdit_Features
                         maxvalue = value;
 
                     this.RaisePropertyChanged(nameof(MaximumValue));
+                }
+                catch { }
+            }
+        }
+
+        public TimeSpan StepInterval
+        {
+            get
+            {
+                return stepInterval;
+            }
+            set
+            {
+                try
+                {
+                    if (value < MinimumValue)
+                        stepInterval = MinimumValue;
+                    else if (MaximumValue < value)
+                        stepInterval = MaximumValue;
+                    else
+                        stepInterval = value;
+
+                    this.RaisePropertyChanged(nameof(StepInterval));
                 }
                 catch { }
             }
